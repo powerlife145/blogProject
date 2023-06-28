@@ -19,6 +19,7 @@ public class BlogResponseDto {
         this.username = blog.getUsername();
         this.contents = blog.getContents();
         this.password = blog.getPassword();
+        this.createAt = blog.getCreatedAt();
         this.modifiedAt = blog.getModifiedAt();
 
     }
