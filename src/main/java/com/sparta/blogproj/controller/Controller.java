@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.List;
 
 // controller -> service -> repository 강한 결합이라 약하게 만들어야 함.
+
 @RestController
 @RequestMapping("/api")
 public class Controller {
