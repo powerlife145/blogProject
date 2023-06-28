@@ -103,6 +103,16 @@
             resize: none;
         }
 
+        textarea.field2 {
+            width: 502px !important;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            border: none;
+            padding: 18px;
+            resize: none;
+        }
+
         textarea.field::placeholder {
             width: 216px;
             height: 16px;
@@ -394,6 +404,10 @@
     </div>
     <div class="area-write">
         <textarea class="field" placeholder="공유하고 싶은 소식을 입력해주세요" name="contents" id="contents" cols="30"
+                  rows="10"></textarea>
+        <textarea class="field2" placeholder="작성자" name="username" id="username" cols="30"
+                  rows="10"></textarea>
+        <textarea class="field2" placeholder="비밀 번호" name="password" id="password" cols="30"
                   rows="10"></textarea>
         <!--            <button class="btn btn-danger" onclick="writePost()">작성하기</button>-->
         <img src="images/send.png" alt="" onclick="writePost()">

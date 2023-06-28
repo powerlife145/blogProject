@@ -28,6 +28,7 @@ public class Controller {
         this.memoService = memoService;
     }
 
+
     @PostMapping("/memos")
     public BlogResponseDto createMemo(@RequestBody BlogRequestDto requestDto) {
         return memoService.createMemo(requestDto);
