@@ -19,8 +19,8 @@ public class MemoService {
 
     private final BlogRepository blogRepository;
 
-    public MemoService(JdbcTemplate jdbcTemplate) {
-        this.blogRepository = new BlogRepository(jdbcTemplate);
+    public MemoService(BlogRepository blogRepository) {
+        this.blogRepository = blogRepository;
     }
 
     public BlogResponseDto createMemo(BlogRequestDto requestDto) {
