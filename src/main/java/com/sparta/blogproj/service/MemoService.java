@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+
+
 @Service
 public class MemoService {
 
@@ -37,32 +39,34 @@ public class MemoService {
 
     @Transactional
     public Long updateMemo(Long id, BlogRequestDto requestDto) {
-        Blog memo = fintMemo(id);
-        // 해당 메모가 DB에 존재하는지 확인
-        // 비번과 같다면 리턴
-        if(!checkPassword(id, requestDto.getPassword())){
+        Blog memo = findMemo(id);
+        if(requestDto.getPassword().equals(memo.getPassword())){
             memo.update(requestDto);
-            
+        }else{throw new IllegalArgumentException("비번 틀림");}
+        return id;
+
+    }
+
+    @Transactional
+    public Long deleteMemo(Long id, String password) {
+        Blog memo = findMemo(id);
+        // 로그 출력으로 실제 값 확인
+        System.out.println("Input password: " + password);
+        System.out.println("Stored password: " + memo.getPassword());
+
+        // 해당 메모가 DB에 존재하는지 확인
+        if(memo.getPassword().equals(password)){
+            blogRepository.delete(memo);
+        } else {
+            throw new IllegalArgumentException("비번 불일치");
         }
         return id;
+
     }
 
 
 
-    public Long deleteMemo(Long id) {
-        // 해당 메모가 DB에 존재하는지 확인
-        Blog memo = fintMemo(id);
-        blogRepository.delete(memo);
-        return id;
-    }
-
-    public boolean checkPassword(Long id, @RequestBody String password){
-        Blog memo = fintMemo(id);
-        return  memo.getPassword().equals(password);
-    }
-
-
-    private  Blog fintMemo(Long id){
+    public Blog findMemo(Long id){
         return   blogRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 메모는 없습니다.")
         );

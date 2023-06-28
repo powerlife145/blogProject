@@ -21,17 +21,22 @@ public class Blog extends Timestamped {
     private String contents;
     @Column(name = "password", nullable = false, length = 500)
     private String password;
+    @Column(name = "title", nullable = false, length = 500)
+    private String title;
 
 
     public Blog(BlogRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
         this.password = requestDto.getPassword();
+        this.title = requestDto.getTitle();
     }
 
     public void update(BlogRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
         this.password = requestDto.getPassword();
+        this.title =requestDto.getTitle();
+
     }
 }

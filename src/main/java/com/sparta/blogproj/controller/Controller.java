@@ -4,16 +4,8 @@ import com.sparta.blogproj.dto.BlogRequestDto;
 import com.sparta.blogproj.dto.BlogResponseDto;
 import com.sparta.blogproj.entity.Blog;
 import com.sparta.blogproj.service.MemoService;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 // controller -> service -> repository 강한 결합이라 약하게 만들어야 함.
@@ -47,10 +39,9 @@ public class Controller {
     }
 
     @DeleteMapping("/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id) {
-        return memoService.deleteMemo(id);
-
-
+    public Long deleteMemo(@PathVariable Long id, @RequestBody BlogRequestDto requestDto) {
+        System.out.println("controller password : "+requestDto.getPassword());
+        return  memoService.deleteMemo(id, requestDto.getPassword());
     }
 
 
