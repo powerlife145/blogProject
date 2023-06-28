@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "memo") // 매핑할 테이블의 이름을 지정
 @NoArgsConstructor
-public class Blog {
+public class Blog extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +21,7 @@ public class Blog {
     private String contents;
     @Column(name = "password", nullable = false, length = 500)
     private String password;
+
 
     public Blog(BlogRequestDto requestDto) {
         this.username = requestDto.getUsername();
